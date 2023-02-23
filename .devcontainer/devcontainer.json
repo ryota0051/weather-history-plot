@@ -1,0 +1,10 @@
+{
+  "name": "028-weather-history_plot",
+  "forwardPorts": [3000],
+  "dockerFile": "../Dockerfile",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  }
+}
