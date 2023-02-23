@@ -2,15 +2,18 @@ import React from "react"
 import { Line } from "react-chartjs-2"
 import {
   Chart as ChartJS,
-  CategoryScale,
+  TimeScale,
   LinearScale,
   PointElement,
   LineElement,
   Title,
   Tooltip,
   Legend,
+  ChartOptions,
 } from "chart.js"
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
+import "chartjs-adapter-date-fns"
+
+ChartJS.register(TimeScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend)
 import { TResponse } from "../weatherApi/fetchWeather"
 
 type TProps = {
@@ -43,8 +46,16 @@ const TemperatureLine = (props: TProps) => {
     ],
   }
 
-  const options = {
+  const options: ChartOptions<"line"> = {
     maintainAspectRatio: false,
+    scales: {
+      x: {
+        type: "time" as const,
+        time: {
+          unit: "day",
+        },
+      },
+    },
   }
 
   return (
