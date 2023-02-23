@@ -21,7 +21,7 @@
 
 ブラウザに以下のような画面が表示される。
 
-![weather-history-plot](./README_IMG/weather-history-plot-example.png)
+![example](./README_IMG/example.png)
 
 ## 注意点
 
