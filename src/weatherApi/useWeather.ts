@@ -6,13 +6,19 @@ const useWeather = () => {
   const [parisWeather, setParisWeather] = useState<TResponse | null>(null)
   const [newYorkWeather, setNewYorkWeather] = useState<TResponse | null>(null)
   useEffect(() => {
+    let canceled = false
     const weatherResponse = async () => {
       const response = await fetchCityWeathers()
-      setTokyoWeather(response.Tokyo)
-      setParisWeather(response.Paris)
-      setNewYorkWeather(response.NewYork)
+      if (!canceled) {
+        setTokyoWeather(response.Tokyo)
+        setParisWeather(response.Paris)
+        setNewYorkWeather(response.NewYork)
+      }
     }
     weatherResponse()
+    return () => {
+      canceled = true
+    }
   }, [])
   return [tokyoWeather, parisWeather, newYorkWeather]
 }
